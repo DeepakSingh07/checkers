@@ -38,7 +38,12 @@ def coursefolder(x):
     linkmatches = re.findall(linkpattern, response.text)
     udemylink = 'https://udemy.com'+linkmatches[0]
 
-    return title, udemylink
+    link_parts = udemylink.split('?couponCode=')
+
+    LINK = link_parts[0]
+    COUPON = link_parts[1]
+
+    return title, LINK, COUPON
 
 def courson(x):
     headers = {
@@ -56,7 +61,12 @@ def courson(x):
     linkmatches = re.findall(linkpattern, response.text)
     udemylink = 'https://udemy.com/course/'+linkmatches[0]
 
-    return title, udemylink
+    link_parts = udemylink.split('?couponCode=')
+
+    LINK = link_parts[0]
+    COUPON = link_parts[1]
+
+    return title, LINK, COUPON
 
 while(True):
     print('''
@@ -71,12 +81,13 @@ while(True):
     link = input('Enter Link : ')
 
     if 'courson.xyz' in link:
-        title, udemylink = courson(link)
+        title, udemylink, coupon = courson(link)
     elif 'coursefolder.net' in link:
-        title, udemylink = coursefolder(link)
+        title, udemylink, coupon = coursefolder(link)
     else:
         print('Invalid Link! Try Again.')
         time.sleep(1)
+        os.system('cls')
         continue
 
     if title is None:
@@ -91,7 +102,7 @@ while(True):
     shortlink = requests.get(url = link)
     print(shortlink.text)
     
-    message = f'*{title}*\n\n{shortlink.text}'
+    message = f'*{title}*\n_[ Free For First 1000 Enrolls Only! ]_\n\n{shortlink.text}\nUse Code : `{coupon}`'
 
     if title is None or shortlink is None:
         print('ERROR, Try Again.')
