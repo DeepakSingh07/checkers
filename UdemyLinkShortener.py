@@ -41,7 +41,7 @@ def coursefolder(x):
     link_parts = udemylink.split('?couponCode=')
 
     LINK = link_parts[0]
-    COUPON = link_parts[1]
+    COUPON = link_parts[1].replace(',', '').strip()
 
     return title, LINK, COUPON
 
