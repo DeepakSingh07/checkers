@@ -77,6 +77,7 @@ while(True):
     ╚██████╔╝██████╔╝███████╗██║ ╚═╝ ██║   ██║   LINK SHORTENER
      ╚═════╝ ╚═════╝ ╚══════╝╚═╝     ╚═╝   ╚═╝   
             [+] DEVELOPED BY DE3P4K [+]
+          https://github.com/DeepakSingh07
     ''')
     link = input('Enter Link : ')
 
